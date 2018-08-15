@@ -43,10 +43,10 @@ class AddTaskForm extends React.Component {
     }
 
     onSaveTaskHandlerClick = () => {
-        const taskArray = this.state.tasksArray
+        const tasksArray = this.state.tasksArray
 
-        taskArray.map((e, index) => {
-            if (index !== 0) {
+        const newTasksArray = tasksArray.map((e, index, array) => {
+            if (index === 0) {
                 return {
                     task: e,
                     date: Date.now(),
@@ -60,10 +60,12 @@ class AddTaskForm extends React.Component {
                     date: Date.now(),
                     isFavourite: false,
                     category: this.state.category,
-                    parents: e,
+                    parents: array[0],
                 }
             }
         })
+
+        console.log(newTasksArray)
     }
 
     subTaskFieldsMaker = () => {
