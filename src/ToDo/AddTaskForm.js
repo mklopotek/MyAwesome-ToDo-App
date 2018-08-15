@@ -36,8 +36,33 @@ class AddTaskForm extends React.Component {
         let newTasksArray = this.state.tasksArray
         newTasksArray.push(null)
 
-        this.setState({ howManySubTaskFields: this.state.howManySubTaskFields + 1,
+        this.setState({
+            howManySubTaskFields: this.state.howManySubTaskFields + 1,
             tasksArray: newTasksArray
+        })
+    }
+
+    onSaveTaskHandlerClick = () => {
+        const taskArray = this.state.tasksArray
+
+        taskArray.map((e, index) => {
+            if (index !== 0) {
+                return {
+                    task: e,
+                    date: Date.now(),
+                    isFavourite: false,
+                    category: this.state.category,
+                    parents: null,
+                }
+            } else {
+                return {
+                    task: e,
+                    date: Date.now(),
+                    isFavourite: false,
+                    category: this.state.category,
+                    parents: e,
+                }
+            }
         })
     }
 
@@ -54,7 +79,7 @@ class AddTaskForm extends React.Component {
                 <TextField
                     floatingLabelText="My subTask..."
                     style={styles}
-                    onChange={(e) => this.onChangeTaskText(e, index+1)}
+                    onChange={(e) => this.onChangeTaskText(e, index + 1)}
                 />
             </div>
         )
@@ -95,6 +120,7 @@ class AddTaskForm extends React.Component {
                         style={styles}
                         label="Add task to TO DO"
                         primary={true}
+                        onClick={this.onSaveTaskHandlerClick}
                     />
                 </div>
             </div>
