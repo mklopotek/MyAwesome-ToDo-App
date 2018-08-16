@@ -10,7 +10,7 @@ const Category = (props) => {
                 style={props.styles}
                 floatingLabelText="Choose task's category"
                 value={props.currentCategory}
-                onChange={props.onCategoryChangeHandler}
+                onChange={props.onCategoryChangeAction}
             >
                 <MenuItem value={"Must have"} primaryText="Must have" />
                 <MenuItem value={"Should have"} primaryText="Should have" />
