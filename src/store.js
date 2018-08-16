@@ -2,10 +2,12 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
 import newTask from './state/newTask'
+import tasksList from './state/tasksList'
 
 
 const reducer = combineReducers({
-    newTask
+    newTask,
+    tasksList
 })
 
 

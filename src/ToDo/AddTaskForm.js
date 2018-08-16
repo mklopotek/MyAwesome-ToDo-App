@@ -6,7 +6,8 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { connect } from 'react-redux'
-import { onTaskChangeAction, onCategoryChangeAction } from '../state/newTask'
+import { onTaskChangeAction, onCategoryChangeAction, onAddTaskClickAction } from '../state/newTask'
+import PaperRefined from '../GlobalComponents/PaperRefined';
 
 const AddTaskForm = (props) => {
 
@@ -15,6 +16,7 @@ const AddTaskForm = (props) => {
     }
 
     return (
+        <PaperRefined>
         <div className='to-do__add-task-form'>
             <h3>Add new task to your To Do List!</h3>
             <Category
@@ -36,10 +38,11 @@ const AddTaskForm = (props) => {
                     style={styles}
                     label="Add task"
                     primary={true}
-                    onClick={() => null}
+                    onClick={props._onAddTaskClickAction}
                 />
             </div>
         </div>
+        </PaperRefined>
     )
 }
 
@@ -50,7 +53,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     _onTaskChangeAction: (event, value) => dispatch(onTaskChangeAction(event, value)),
-    _onCategoryChangeAction: (event, index, choosenCategory) => dispatch(onCategoryChangeAction(event, index, choosenCategory))
+    _onCategoryChangeAction: (event, index, choosenCategory) => dispatch(onCategoryChangeAction(event, index, choosenCategory)),
+    _onAddTaskClickAction: () => dispatch(onAddTaskClickAction())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTaskForm)

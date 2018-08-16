@@ -1,6 +1,8 @@
+import { database } from '../firebaseConfig'
+
 const TASK_CHANGE = 'newTask/TASK_CHANGE'
 const CATEGORY_CHANGE = 'newTask/CATEGORY_CHANGE'
-const SET_TASK = 'newTask/SET_TASK'
+const CLEAR_ADDTASKFORM = 'newTask/CLEAR_ADDTASKFORM'
 
 export const onTaskChangeAction = (event, value) => ({
     type: TASK_CHANGE,
@@ -12,7 +14,23 @@ export const onCategoryChangeAction = (event, index, choosenCategory) => ({
     category: choosenCategory
 })
 
-// export const onSetTaskClick
+export const clearAddTaskFormAction = () => ({
+    type: CLEAR_ADDTASKFORM
+})
+
+export const onAddTaskClickAction = () => (dispatch, getState) => {
+    const state = getState()
+
+    console.log(state) //this function is not working sth weird with obj in push()
+
+    database.ref('tasks').push({
+        task: state.task,
+        category: state.category,
+        isComplete: false
+    })
+
+    dispatch(clearAddTaskFormAction())
+}
 
 const initialState = {
     task: '',
@@ -30,6 +48,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 category: action.category
+            }
+        case CLEAR_ADDTASKFORM:
+            return {
+                ...state,
+                initialState
             }
         default:
             return state

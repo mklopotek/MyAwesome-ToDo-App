@@ -2,6 +2,8 @@ import React from 'react'
 import PaperRefined from '../GlobalComponents/PaperRefined'
 
 import AddTaskForm from './AddTaskForm'
+import TaskList from './TasksList';
+import Searcher from './Searcher'
 
 const ToDo = () => {
     const styles = {
@@ -20,6 +22,8 @@ const ToDo = () => {
                     <h2>Welcome to my awesome To-Do App! </h2>
                 </div>
                 <AddTaskForm />
+                <Searcher />
+                <TaskList />
             </div>
         </PaperRefined>
     )
