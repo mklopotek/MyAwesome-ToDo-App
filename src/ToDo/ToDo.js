@@ -11,7 +11,6 @@ const ToDo = () => {
             textAlign: 'center',
             padding: '20px'
         },
-
     }
 
     return (

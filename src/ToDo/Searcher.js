@@ -13,6 +13,7 @@ const Searcher = (props) => {
 
     return (
     <PaperRefined>
+        <div className='to-do__searcher'>
         <div>
             <TextField 
             floatingLabelText="Find your task..."
@@ -38,6 +39,7 @@ const Searcher = (props) => {
                     onClick={() => null}
                 />
             </IconButton>
+        </div>
         </div>
     </PaperRefined>
 )}

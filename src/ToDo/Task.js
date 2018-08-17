@@ -5,6 +5,10 @@ import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import IconButton from 'material-ui/IconButton';
 import Chip from 'material-ui/Chip';
 
+const styles = {
+
+}
+
 const Task = (props) => (
     <div className='list-item'>
         <ListItem
@@ -13,6 +17,11 @@ const Task = (props) => (
                 <Checkbox />
             }
         />
+        <Chip
+        className={'list-item__chip'}
+        >
+            {props.category}
+        </Chip>
         <IconButton
             className={'list-item__icon-delete'}
             tooltip="Delete this task">
@@ -20,9 +29,6 @@ const Task = (props) => (
                 tooltip="Delete"
             />
         </IconButton>
-        <Chip>
-          {props.category}
-        </Chip>
     </div>
 )
 

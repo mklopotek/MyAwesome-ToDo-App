@@ -5,8 +5,10 @@ import { List } from 'material-ui/List';
 
 const TaskList = (props) => (
     <PaperRefined>
-        <div>
-            <List>
+        {/* <div className='to-do__task-list'> */}
+            <List
+             className='to-do__task-list'
+            >
 
                 <Task
                     task={'blablabla'}
@@ -17,7 +19,7 @@ const TaskList = (props) => (
                     category={'can have'}
                 />
             </List>
-        </div>
+        {/* </div> */}
 
     </PaperRefined>
 )
