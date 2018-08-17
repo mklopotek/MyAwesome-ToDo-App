@@ -14,23 +14,30 @@ const TaskList = (props) => (
             className='to-do__task-list'
         >
 
-         {props._tasks ?
-            props._tasks.map(e => {
-                return (
-                    <Task
-                        task={e.task}
-                        category={e.category}
-                        isCompleted={e.isCompleted}
-                        id={e.id}
-                    />)
+            {props._tasks ?
+                props._tasks
+                    .filter(e =>
+                        e.task.toLowerCase().includes(props._filterValue.toLowerCase())
+                    )
+                    .filter(e => 
+                        props._filterComplete === null || props._filterComplete === e.isComplete
+                    )
+                    .map(e => {
+                        return (
+                            <Task
+                                key={e.id}
+                                task={e.task}
+                                category={e.category}
+                                isComplete={e.isComplete}
+                                id={e.id}
+                            />)
+                    })
+                :
+                <Loading
+                    size={100}
+                    thickness={20}
+                />
             }
-            )
-            :
-            <Loading 
-            size={100}
-            thickness={20}
-            />
-        }
         </List>
         {/* </div> */}
 
@@ -38,7 +45,9 @@ const TaskList = (props) => (
 )
 
 const mapStateToProps = state => ({
-    _tasks: state.tasksList.tasks
+    _tasks: state.tasksList.tasks,
+    _filterValue: state.searcher.filterValue,
+    _filterComplete: state.searcher.filterComplete
 })
 
 export default connect(mapStateToProps, null)(TaskList)

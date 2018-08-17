@@ -5,6 +5,8 @@ import Bookmark from 'material-ui/svg-icons/action/bookmark'
 import BookmarkBorder from 'material-ui/svg-icons/action/bookmark-border'
 import Book from 'material-ui/svg-icons/action/book'
 import { TextField } from 'material-ui';
+import { connect } from 'react-redux'
+import { onFilterValueHandlerAction, onFilterCompleteHandlerAction } from '../state/searcher'
 
 const Searcher = (props) => {
     const styles = {
@@ -18,25 +20,26 @@ const Searcher = (props) => {
             <TextField 
             floatingLabelText="Find your task..."
             style={styles}
+            onChange={(e)=> props._onFilterValueHandlerAction(e.target.value)}
             />
         </div>
         <div>
             <IconButton
                 tooltip="Tasks completed">
                 <Bookmark
-                    onClick={() => true}
+                    onClick={() => props._onFilterCompleteHandlerAction(true)}
                 />
             </IconButton>
             <IconButton
                 tooltip="Tasks uncompleted">
                 <BookmarkBorder
-                    onClick={() => false}
+                    onClick={() => props._onFilterCompleteHandlerAction(false)}
                 />
             </IconButton>
             <IconButton
                 tooltip="All tasks">
                 <Book
-                    onClick={() => null}
+                    onClick={() => props._onFilterCompleteHandlerAction(null)}
                 />
             </IconButton>
         </div>
@@ -45,4 +48,9 @@ const Searcher = (props) => {
 )}
 
 
-export default Searcher 
+const mapDispatchToProps = (dispatch) => ({
+    _onFilterValueHandlerAction: (value) => dispatch(onFilterValueHandlerAction(value)),
+    _onFilterCompleteHandlerAction: (value) => dispatch(onFilterCompleteHandlerAction(value))
+})
+
+export default connect(null, mapDispatchToProps)(Searcher) 

@@ -3,13 +3,15 @@ import thunk from 'redux-thunk'
 
 import newTask from './state/newTask'
 import tasksList from './state/tasksList'
+import searcher from './state/searcher'
 
 import auth, { initAuthStateListening } from './state/auth'
 
 const reducer = combineReducers({
     newTask,
     tasksList,
-    auth
+    auth, 
+    searcher
 })
 
 
