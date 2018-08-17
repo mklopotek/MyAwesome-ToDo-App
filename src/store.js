@@ -4,10 +4,12 @@ import thunk from 'redux-thunk'
 import newTask from './state/newTask'
 import tasksList from './state/tasksList'
 
+import auth, { initAuthStateListening } from './state/auth'
 
 const reducer = combineReducers({
     newTask,
-    tasksList
+    tasksList,
+    auth
 })
 
 
@@ -20,3 +22,5 @@ export const store = createStore(
         applyMiddleware(thunk)
     )
 )
+
+store.dispatch(initAuthStateListening())
