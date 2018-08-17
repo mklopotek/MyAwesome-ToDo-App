@@ -21,11 +21,9 @@ export const clearAddTaskFormAction = () => ({
 export const onAddTaskClickAction = () => (dispatch, getState) => {
     const state = getState()
 
-    console.log(state) //this function is not working sth weird with obj in push()
-
     database.ref('tasks').push({
-        task: state.task,
-        category: state.category,
+        task: state.newTask.task,
+        category: state.newTask.category,
         isComplete: false
     })
 
@@ -52,7 +50,7 @@ export default (state = initialState, action) => {
         case CLEAR_ADDTASKFORM:
             return {
                 ...state,
-                initialState
+                ...initialState
             }
         default:
             return state

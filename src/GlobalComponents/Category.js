@@ -12,9 +12,9 @@ const Category = (props) => {
                 value={props.currentCategory}
                 onChange={props.onCategoryChangeAction}
             >
-                <MenuItem value={"Must have"} primaryText="Must have" />
-                <MenuItem value={"Should have"} primaryText="Should have" />
-                <MenuItem value={"Can have"} primaryText="Can have" />
+                <MenuItem value={"Must do"} primaryText="Must do" />
+                <MenuItem value={"Should do"} primaryText="Should do" />
+                <MenuItem value={"Can do"} primaryText="Can do" />
                 <MenuItem value={"Other"} primaryText="Other" />
 
             </SelectField>
