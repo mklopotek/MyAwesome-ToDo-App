@@ -1,4 +1,6 @@
 import React from 'react'
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import PaperRefined from '../GlobalComponents/PaperRefined';
 
 const SignUp = (props) => (
@@ -10,7 +12,7 @@ const SignUp = (props) => (
                     value={props.emailValue}
                     type={'email'}
                     errorText={props.errorTextEmail}
-                    onChange={props.onEmailChangeAction}
+                    onChange={props.onEmailSignUpChangeAction}
                 />
             </div>
             <div>
@@ -19,17 +21,16 @@ const SignUp = (props) => (
                     value={props.passwordValue}
                     type={'password'}
                     errorText={props.errorTextPassword}
-                    onChange={props.onPasswordChangeAction}
+                    onChange={props.onPasswordSignUpChangeAction}
                 />
             </div>
             <div>
                 <RaisedButton
-                    label="Login"
+                    label="Sign Up"
                     primary={true}
-                    onClick={props.onLogInClickAction}
+                    onClick={props.onSignUpClickAction}
                 />
             </div>
-    </div>
     </PaperRefined>
 )
 

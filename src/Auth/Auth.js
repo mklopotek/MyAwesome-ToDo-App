@@ -6,7 +6,11 @@ import {
     onLogInClickAction,
     logOutAction
 } from '../state/auth'
-
+import { 
+    onEmailSignUpChangeAction,
+    onPasswordSignUpChangeAction,
+    onSignUpClickAction
+ } from '../state/signUpAuth';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import LogInByEmailAndPassword from './LogInByEmailAndPassword'
@@ -37,7 +41,13 @@ const Auth = (props) => (
                     errorTextEmail={props._errorTextEmail}
                 />
                 <SignUp 
-                
+                 onSignUpClickAction={props._onSignUpClickAction}
+                 onPasswordSignUpChangeAction={props._onPasswordSignUpChangeAction}
+                 onEmailSignUpChangeAction={props._onEmailSignUpChangeAction}
+                 passwordValue={props._passwordSignUp}
+                 emailValue={props._emailSignUp}
+                 errorTextPassword={props._errorTextPasswordSignUp}
+                 errorTextEmail={props._errorTextEmailSignUp}
                 />
             </div>
             )
@@ -48,14 +58,23 @@ const mapStateToProps = (state) => ({
             _passwordValue: state.auth.password,
             _user: state.auth.user,
             _errorTextPassword: state.auth.errorTextPassword,
-            _errorTextEmail: state.auth.errorTextEmail
+            _errorTextEmail: state.auth.errorTextEmail,
+
+            _emailSignUp: state.signUpAuth.emailSignUp,
+            _passwordSignUp: state.signUpAuth.passwordSignUp,
+            _errorTextEmailSignUp: state.signUpAuth.errorTextEmailSignUp,
+            _errorTextPasswordSignUp: state.signUpAuth.errorTextPasswordSignUp
         })
         
 const mapDispatchToState = (dispatch) => ({
                 _onEmailChangeAction: (event) => dispatch(onEmailChangeAction(event.target.value)),
             _onPasswordChangeAction: (event) => dispatch(onPasswordChangeAction(event.target.value)),
             _onLogInClickAction: () => dispatch(onLogInClickAction()),
-            _logOutAction: () => dispatch(logOutAction())
+            _logOutAction: () => dispatch(logOutAction()),
+
+            _onEmailSignUpChangeAction: (event) => dispatch(onEmailSignUpChangeAction(event.target.value)),
+            _onPasswordSignUpChangeAction: (event) => dispatch(onPasswordSignUpChangeAction(event.target.value)),
+            _onSignUpClickAction: () => dispatch(onSignUpClickAction())
         })
         
 export default connect(mapStateToProps, mapDispatchToState)(Auth)

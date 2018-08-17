@@ -14,7 +14,9 @@ const TaskList = (props) => (
             className='to-do__task-list'
         >
 
-            {props._tasks ?
+            {
+                
+                props._tasks ?
                 props._tasks
                     .filter(e =>
                         e.task.toLowerCase().includes(props._filterValue.toLowerCase())

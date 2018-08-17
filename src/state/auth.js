@@ -2,9 +2,10 @@ import { auth as firebaseAuth } from '../firebaseConfig'
 
 import { fetchTasksAction } from './tasksList'
 
+const SET_USER = 'auth/LOGIN'
+
 const EMAIL_CHANGE = 'auth/EMAIL_CHANGE'
 const PASSWORD_CHANGE = 'auth/PASSWORD_CHANGE'
-const SET_USER = 'auth/LOGIN'
 const EMPTY_EMAIL = 'auth/EMPTY_EMAIL'
 const EMPTY_PASSWORD = 'auth/EMPTY_PASSWORD'
 
