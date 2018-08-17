@@ -31,3 +31,9 @@ h1 {
   .list-item__chip {
 align-self: center;
   }
+
+.login-page{
+  width: 400px;
+  margin: auto;
+  margin-top: 10%;
+}

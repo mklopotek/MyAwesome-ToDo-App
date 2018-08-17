@@ -10,6 +10,7 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 
 import LogInByEmailAndPassword from './LogInByEmailAndPassword'
+import SignUp from './SignUp'
 
 
 const Auth = (props) => (
@@ -25,7 +26,7 @@ const Auth = (props) => (
                 {props.children}
         </div>
             :
-        <div>
+        <div className='login-page'>
                 <LogInByEmailAndPassword
                     onLogInClickAction={props._onLogInClickAction}
                     onPasswordChangeAction={props._onPasswordChangeAction}
@@ -34,6 +35,9 @@ const Auth = (props) => (
                     emailValue={props._emailValue}
                     errorTextPassword={props._errorTextPassword}
                     errorTextEmail={props._errorTextEmail}
+                />
+                <SignUp 
+                
                 />
             </div>
             )
