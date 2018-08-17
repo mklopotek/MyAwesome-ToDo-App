@@ -5,6 +5,8 @@ import { fetchTasksAction } from './tasksList'
 const EMAIL_CHANGE = 'auth/EMAIL_CHANGE'
 const PASSWORD_CHANGE = 'auth/PASSWORD_CHANGE'
 const SET_USER = 'auth/LOGIN'
+const EMPTY_EMAIL = 'auth/EMPTY_EMAIL'
+const EMPTY_PASSWORD = 'auth/EMPTY_PASSWORD'
 
 export const onEmailChangeAction = value => ({
     type: EMAIL_CHANGE,
@@ -19,6 +21,14 @@ export const onPasswordChangeAction = value => ({
 export const setUserAction = user => ({
     type: SET_USER,
     user
+})
+
+export const onEmptyEmailClick = () => ({
+    type: EMPTY_EMAIL
+})
+
+export const onEmptyPasswordClick = () => ({
+    type: EMPTY_PASSWORD
 })
 
 export const initAuthStateListening = () => (dispatch, getState) => {
@@ -47,17 +57,25 @@ export const onLogInClickAction = () => (dispatch, getState) => {
     console.dir(firebaseAuth)
     const { auth } = getState()
 
-    firebaseAuth.signInWithEmailAndPassword(auth.email, auth.password)
-        .then(() => console.log('LoginOk'))
-        .catch(function (error) {
-            const errorMessage = error.message;
-            alert(errorMessage)
-        })
+    if (auth.email === '') {
+        dispatch(onEmptyEmailClick())
+    }
+    if (auth.password === '') { dispatch(onEmptyPasswordClick()) }
+    else {
+        firebaseAuth.signInWithEmailAndPassword(auth.email, auth.password)
+            .then(() => console.log('LoginOk'))
+            .catch(function (error) {
+                const errorMessage = error.message;
+                alert(errorMessage)
+            })
+    }
 }
 
 const initialState = {
     email: '',
     password: '',
+    errorTextEmail: '',
+    errorTextPassword: '',
     user: null
 }
 
@@ -73,9 +91,19 @@ export default (state = initialState, action) => {
                 ...state,
                 password: action.password
             }
-        case SET_USER:
+        case EMPTY_EMAIL:
             return {
                 ...state,
+                errorTextEmail: 'This field is required'
+            }
+        case EMPTY_PASSWORD:
+            return {
+                ...state,
+                errorTextPassword: 'This field is required'
+            }
+        case SET_USER:
+            return {
+                ...initialState,
                 user: action.user
             }
         default:

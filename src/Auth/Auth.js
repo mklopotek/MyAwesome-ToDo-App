@@ -12,13 +12,13 @@ import LogInByEmailAndPassword from './LogInByEmailAndPassword'
 
 const Auth = (props) => (
 
-    props._user ? 
-    <div>
-        <button
-        onClick={props._logOutAction}
-        >LogOut</button>
-        {props.children}
-    </div>
+    props._user ?
+        <div>
+            <button
+                onClick={props._logOutAction}
+            >LogOut</button>
+            {props.children}
+        </div>
         :
         <div>
             <LogInByEmailAndPassword
@@ -27,6 +27,8 @@ const Auth = (props) => (
                 onEmailChangeAction={props._onEmailChangeAction}
                 passwordValue={props._passwordValue}
                 emailValue={props._emailValue}
+                errorTextPassword={props._errorTextPassword}
+                errorTextEmail={props._errorTextEmail}
             />
         </div>
 )
@@ -35,7 +37,9 @@ const Auth = (props) => (
 const mapStateToProps = (state) => ({
     _emailValue: state.auth.email,
     _passwordValue: state.auth.password,
-    _user: state.auth.user
+    _user: state.auth.user,
+    _errorTextPassword: state.auth.errorTextPassword,
+    _errorTextEmail: state.auth.errorTextEmail
 })
 
 const mapDispatchToState = (dispatch) => ({
