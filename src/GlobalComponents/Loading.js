@@ -8,9 +8,9 @@ const styles = {
     color: 'purpleA700'
 }
 
-const Loading = () => (
+const Loading = ({ size = 150, thickness = 50 }) => (
     <div className='to-do__loading' style={styles}>
-        <CircularProgress size={150} thickness={50} />
+        <CircularProgress size={size} thickness={thickness} />
     </div>
 )
 

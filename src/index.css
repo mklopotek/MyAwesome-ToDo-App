@@ -14,6 +14,7 @@ h1 {
   flex-direction: column;
   width: 50vw;
   justify-content: center;
+  margin: auto;
 }
 
 .to-do__task-list{

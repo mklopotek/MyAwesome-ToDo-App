@@ -4,6 +4,7 @@ import Checkbox from 'material-ui/Checkbox';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import IconButton from 'material-ui/IconButton';
 import Chip from 'material-ui/Chip';
+import { database } from '../firebaseConfig';
 
 const styles = {
 
@@ -14,7 +15,10 @@ const Task = (props) => (
         <ListItem
             primaryText={props.task}
             leftCheckbox={
-                <Checkbox />
+                <Checkbox 
+                value={props.isCompleted}
+                onCheck={(e) => isCompletedHandler(e.target.checked, props.id)}
+                />
             }
         />
         <Chip
@@ -31,5 +35,13 @@ const Task = (props) => (
         </IconButton>
     </div>
 )
+
+const isCompletedHandler = (isComplete, id) => {
+
+    database
+    .ref(`tasks/${id}/isComplete`)
+    .set(isComplete)
+    
+}
 
 export default Task
