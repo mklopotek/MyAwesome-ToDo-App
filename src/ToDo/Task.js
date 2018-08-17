@@ -37,11 +37,9 @@ const Task = (props) => (
 )
 
 const isCompletedHandler = (isComplete, id) => {
-
     database
     .ref(`tasks/${id}/isComplete`)
-    .set(isComplete)
-    
+    .set(isComplete)   
 }
 
 export default Task

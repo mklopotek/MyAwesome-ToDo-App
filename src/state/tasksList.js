@@ -9,8 +9,10 @@ export const setTasksAction = (data) => ({
 
 
 export const fetchTasksAction = () => (dispatch, getState) => {
+    const state = getState()
+    const user = state.auth.user.uid
     database
-        .ref('tasks')
+        .ref(`${user}/tasks`)
         .on('value', snapshot => {
             const firebaseData = Object.entries(snapshot.val() || {}).map(([id, value]) => {
                 value.id = id

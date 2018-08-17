@@ -20,8 +20,9 @@ export const clearAddTaskFormAction = () => ({
 
 export const onAddTaskClickAction = () => (dispatch, getState) => {
     const state = getState()
+    const user = state.auth.user.uid
 
-    database.ref('tasks').push({
+    database.ref(`${user}/tasks`).push({
         task: state.newTask.task,
         category: state.newTask.category,
         isComplete: false
