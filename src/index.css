@@ -32,8 +32,15 @@ h1 {
 align-self: center;
   }
 
-.login-page{
+.login-page-forms{
   width: 400px;
   margin: auto;
-  margin-top: 10%;
+
+}
+
+.login-page{
+  width: 1000px;
+  margin: auto;
+  margin-top: 5%;
+  text-align: center
 }

@@ -5,6 +5,7 @@ import newTask from './state/newTask'
 import tasksList from './state/tasksList'
 import searcher from './state/searcher'
 import signUpAuth from './state/signUpAuth'
+import logInAuth from './state/logInAuth'
 
 import auth, { initAuthStateListening } from './state/auth'
 
@@ -13,7 +14,8 @@ const reducer = combineReducers({
     tasksList,
     auth, 
     searcher, 
-    signUpAuth
+    signUpAuth, 
+    logInAuth
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

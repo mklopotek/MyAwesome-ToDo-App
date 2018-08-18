@@ -4,9 +4,10 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import PaperRefined from '../GlobalComponents/PaperRefined';
 
-const LogInByEmailAndPassword = (props) => (
+const EmailAndPasswordForm = (props) => (
     <div>
         <PaperRefined>
+            <h1>{props.label}</h1>
            <div>
                 <TextField
                     floatingLabelText="E-mail"
@@ -27,9 +28,9 @@ const LogInByEmailAndPassword = (props) => (
             </div>
             <div>
                 <RaisedButton
-                    label="Login"
+                    label={props.label}
                     primary={true}
-                    onClick={props.onLogInClickAction}
+                    onClick={props.onClickAction}
                 />
             </div>
             </PaperRefined>
@@ -37,4 +38,4 @@ const LogInByEmailAndPassword = (props) => (
 )
 
 
-export default LogInByEmailAndPassword
+export default EmailAndPasswordForm
