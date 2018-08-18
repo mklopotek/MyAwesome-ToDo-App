@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { List } from 'material-ui/List'
+import Subheader from 'material-ui/Subheader';
 
 import PaperRefined from '../GlobalComponents/PaperRefined'
 import Loading from '../GlobalComponents/Loading'
@@ -15,23 +16,28 @@ const TaskList = (props) => (
             {
                 props._tasks ?
                     props._tasks.length !== 0 ?
-                        props._tasks
-                            .filter(e =>
-                                e.task.toLowerCase().includes(props._filterValue.toLowerCase())
-                            )
-                            .filter(e =>
-                                props._filterComplete === null || props._filterComplete === e.isComplete
-                            )
-                            .map(e => {
-                                return (
-                                    <Task
-                                        key={e.id}
-                                        task={e.task}
-                                        category={e.category}
-                                        isComplete={e.isComplete}
-                                        id={e.id}
-                                    />)
-                            })
+
+                        <div>
+                            {subheaderMaker(props._filterComplete)}
+                            {props._tasks
+                                .filter(e =>
+                                    e.task.toLowerCase().includes(props._filterValue.toLowerCase())
+                                )
+                                .filter(e =>
+                                    props._filterComplete === null || props._filterComplete === e.isComplete
+                                )
+                                .map(e => {
+                                    return (
+                                        <Task
+                                            key={e.id}
+                                            task={e.task}
+                                            category={e.category}
+                                            isComplete={e.isComplete}
+                                            id={e.id}
+                                        />)
+                                })}
+                        </div>
+
                         :
                         'Your To Do List is empty!'
                     :
@@ -43,6 +49,16 @@ const TaskList = (props) => (
         </List>
     </PaperRefined>
 )
+
+const subheaderMaker = (filterComplete) => {
+  return  filterComplete ?
+        <Subheader>Tasks completed</Subheader>
+        :
+        filterComplete === false ?
+            <Subheader>Tasks uncompleted</Subheader>
+            :
+            <Subheader>All tasks</Subheader>
+}
 
 const mapStateToProps = state => ({
     _tasks: state.tasksList.tasks,
