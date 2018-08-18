@@ -16,7 +16,7 @@ const ToDo = (props) => {
     return (
             <div className='to-do'>
                 <div style={styles.center}>
-                    <h1> Hi {props._userEmail} !</h1>
+                    <h1> Hi { props._userName ? props._userName : props._userEmail} !</h1>
                     <h2>Welcome to my awesome to do app! </h2>
                 </div>
                 <AddTaskForm />
@@ -28,6 +28,7 @@ const ToDo = (props) => {
 
 const mapStateToProps = (state) => ({
     _userEmail: state.auth.user.email,
+    _userName: state.auth.user.displayName
 })
 
 export default connect(mapStateToProps)(ToDo) 

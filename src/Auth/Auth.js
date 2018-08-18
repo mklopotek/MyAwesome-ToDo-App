@@ -11,6 +11,9 @@ import {
     onPasswordSignUpChangeAction,
     onSignUpClickAction
 } from '../state/signUpAuth';
+
+import { onLogInByGoogleClickHandler } from '../state/logInGoogleAuth'
+
 import RaisedButton from 'material-ui/RaisedButton';
 
 import EmailAndPasswordForm from './EmailAndPasswordForm'
@@ -21,7 +24,7 @@ const Auth = (props) => (
 
     props._user ?
         <PaperRefined
-        className='to-do-container'
+            className='to-do-container'
         >
             <RaisedButton
                 className='logout-button'
@@ -34,20 +37,7 @@ const Auth = (props) => (
         :
         <div className='login-page'>
             <h1>Hi! Nice to meet you! :) </h1>
-            <div className='login-page-forms'>
-                <h1> You can sign up here: </h1>
-                <EmailAndPasswordForm
-                    onClickAction={props._onSignUpClickAction}
-                    onPasswordChangeAction={props._onPasswordSignUpChangeAction}
-                    onEmailChangeAction={props._onEmailSignUpChangeAction}
-                    passwordValue={props._passwordSignUp}
-                    emailValue={props._emailSignUp}
-                    errorTextPassword={props._errorTextPasswordSignUp}
-                    errorTextEmail={props._errorTextEmailSignUp}
-                    label={'Sign Up'}
-                />
-            </div>
-            <h1> or if you want to login as a guest</h1>
+            <h1>If you want to login as a guest</h1>
             <h1>please use this date:</h1>
             <h2>e-mail: guest@guest.pl </h2>
             <h2>password: 123456</h2>
@@ -62,6 +52,26 @@ const Auth = (props) => (
                     errorTextEmail={props._errorTextEmailLogin}
                     label={'Login'}
                 />
+                <PaperRefined>
+                    <h1>Login by Google</h1>
+                    <RaisedButton
+                        label="Login"
+                        primary={true}
+                        onClick={props._onLogInByGoogleClickHandler}
+                    />
+                </PaperRefined>
+                <div className='login-page-forms'>
+                    <EmailAndPasswordForm
+                        onClickAction={props._onSignUpClickAction}
+                        onPasswordChangeAction={props._onPasswordSignUpChangeAction}
+                        onEmailChangeAction={props._onEmailSignUpChangeAction}
+                        passwordValue={props._passwordSignUp}
+                        emailValue={props._emailSignUp}
+                        errorTextPassword={props._errorTextPasswordSignUp}
+                        errorTextEmail={props._errorTextEmailSignUp}
+                        label={'Sign Up'}
+                    />
+                </div>
             </div>
         </div>
 )
@@ -90,7 +100,9 @@ const mapDispatchToState = (dispatch) => ({
 
     _onEmailSignUpChangeAction: (event) => dispatch(onEmailSignUpChangeAction(event.target.value)),
     _onPasswordSignUpChangeAction: (event) => dispatch(onPasswordSignUpChangeAction(event.target.value)),
-    _onSignUpClickAction: () => dispatch(onSignUpClickAction())
+    _onSignUpClickAction: () => dispatch(onSignUpClickAction()),
+
+    _onLogInByGoogleClickHandler: () => dispatch(onLogInByGoogleClickHandler())
 })
 
 export default connect(mapStateToProps, mapDispatchToState)(Auth)
