@@ -9,40 +9,38 @@ import Task from './Task'
 
 const TaskList = (props) => (
     <PaperRefined>
-        {/* <div className='to-do__task-list'> */}
         <List
             className='to-do__task-list'
         >
-
             {
-                
                 props._tasks ?
-                props._tasks
-                    .filter(e =>
-                        e.task.toLowerCase().includes(props._filterValue.toLowerCase())
-                    )
-                    .filter(e => 
-                        props._filterComplete === null || props._filterComplete === e.isComplete
-                    )
-                    .map(e => {
-                        return (
-                            <Task
-                                key={e.id}
-                                task={e.task}
-                                category={e.category}
-                                isComplete={e.isComplete}
-                                id={e.id}
-                            />)
-                    })
-                :
-                <Loading
-                    size={100}
-                    thickness={20}
-                />
+                    props._tasks.length !== 0 ?
+                        props._tasks
+                            .filter(e =>
+                                e.task.toLowerCase().includes(props._filterValue.toLowerCase())
+                            )
+                            .filter(e =>
+                                props._filterComplete === null || props._filterComplete === e.isComplete
+                            )
+                            .map(e => {
+                                return (
+                                    <Task
+                                        key={e.id}
+                                        task={e.task}
+                                        category={e.category}
+                                        isComplete={e.isComplete}
+                                        id={e.id}
+                                    />)
+                            })
+                        :
+                        'Your To Do List is empty!'
+                    :
+                    <Loading
+                        size={100}
+                        thickness={20}
+                    />
             }
         </List>
-        {/* </div> */}
-
     </PaperRefined>
 )
 

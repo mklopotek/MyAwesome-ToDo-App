@@ -1,11 +1,11 @@
 import React from 'react'
-import PaperRefined from '../GlobalComponents/PaperRefined'
+import { connect } from 'react-redux'
 
 import AddTaskForm from './AddTaskForm'
 import TaskList from './TasksList';
 import Searcher from './Searcher'
 
-const ToDo = () => {
+const ToDo = (props) => {
     const styles = {
         center: {
             textAlign: 'center',
@@ -14,19 +14,20 @@ const ToDo = () => {
     }
 
     return (
-        <PaperRefined>
             <div className='to-do'>
                 <div style={styles.center}>
-                    <h1> Hi [tutaj imie z logowania] !</h1>
-                    <h2>Welcome to my awesome To-Do App! </h2>
+                    <h1> Hi {props._userEmail} !</h1>
+                    <h2>Welcome to my awesome to do app! </h2>
                 </div>
                 <AddTaskForm />
                 <Searcher />
                 <TaskList />
             </div>
-        </PaperRefined>
     )
 }
 
+const mapStateToProps = (state) => ({
+    _userEmail: state.auth.user.email,
+})
 
-export default ToDo 
+export default connect(mapStateToProps)(ToDo) 

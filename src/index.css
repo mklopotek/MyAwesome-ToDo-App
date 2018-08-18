@@ -17,30 +17,45 @@ h1 {
   margin: auto;
 }
 
-.to-do__task-list{
+.to-do__task-list {
   width: 100%;
 }
 
-.list-item{
+.list-item {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-content: center
+  align-content: center;
 }
 
   .list-item__chip {
 align-self: center;
   }
 
-.login-page-forms{
+.login-page-forms {
   width: 400px;
   margin: auto;
 
 }
 
-.login-page{
+.login-page {
   width: 1000px;
   margin: auto;
   margin-top: 5%;
-  text-align: center
+  text-align: center;
+}
+
+.logout-button {
+position: absolute;
+right: 0;
+top: 0;
+}
+
+.to-do-container {
+  position: relative;
+}
+
+.to-do__loading > div {
+  transform: translateX(-50%);
+  margin-left: 50%;
 }

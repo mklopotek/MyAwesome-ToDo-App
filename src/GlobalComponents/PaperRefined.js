@@ -7,7 +7,7 @@ const styles = {
 }
 
 const PaperRefined = (props) => (
-    <Paper style={styles}>
+    <Paper className={props.className} style={styles}>
         {props.children}
     </Paper>
 )

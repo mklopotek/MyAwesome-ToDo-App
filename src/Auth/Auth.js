@@ -14,19 +14,23 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 
 import EmailAndPasswordForm from './EmailAndPasswordForm'
+import PaperRefined from '../GlobalComponents/PaperRefined';
 
 
 const Auth = (props) => (
 
     props._user ?
-        <div>
+        <PaperRefined
+        className='to-do-container'
+        >
             <RaisedButton
+                className='logout-button'
                 label="Logout"
                 primary={true}
                 onClick={props._logOutAction}
             />
             {props.children}
-        </div>
+        </PaperRefined>
         :
         <div className='login-page'>
             <h1>Hi! Nice to meet you! :) </h1>
@@ -58,8 +62,6 @@ const Auth = (props) => (
                     errorTextEmail={props._errorTextEmailLogin}
                     label={'Login'}
                 />
-
-
             </div>
         </div>
 )
